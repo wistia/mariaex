@@ -1,6 +1,7 @@
 defmodule Mariaex.Connection.Tcp do
   def connect(host, port, socket_options, timeout) do
     sock_opts = [{:packet, :raw}, :binary, active: :false] ++ socket_options
+    IO.inspect {host, port, sock_opts, timeout}
     case :gen_tcp.connect(host, port, sock_opts, timeout) do
       {:ok, sock} = ok ->
         # A suitable :buffer is only set if :recbuf is included in
